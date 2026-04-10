@@ -91,13 +91,13 @@ body {
 }
 
 .resume-link {
-  color: var(--fg);
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  color: var(--muted);
+  text-decoration: none;
 }
 
-.resume-link:hover {
-  color: var(--accent);
+.resume-link:hover,
+.resume-link:focus-visible {
+  color: var(--fg);
 }
 
 .socials {
