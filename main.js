@@ -1,4 +1,4 @@
-const RESUME_HREF = "public/resume.pdf";
+const RESUME_HREF = "/resume.pdf";
 
 const tabExperience = document.getElementById("tab-experience");
 const tabAbout = document.getElementById("tab-about");
