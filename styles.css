@@ -166,6 +166,7 @@ main {
 
 .about-text p {
   margin: 0 0 1rem;
+  text-wrap: pretty;
 }
 
 .about-text p:last-child {
