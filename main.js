@@ -15,7 +15,19 @@ const tabs = [
   { tab: tabAbout, panel: panelAbout, id: "about" },
 ].filter((t) => t.tab && t.panel);
 
-function selectTab(id) {
+function normalizedPathname() {
+  let p = window.location.pathname;
+  if (p.length > 1 && p.endsWith("/")) {
+    p = p.slice(0, -1);
+  }
+  return p || "/";
+}
+
+function tabFromLocation() {
+  return normalizedPathname() === "/about" ? "about" : "experience";
+}
+
+function applyTab(id) {
   for (const { tab, panel, id: tid } of tabs) {
     const on = tid === id;
     tab.setAttribute("aria-selected", on ? "true" : "false");
@@ -26,16 +38,13 @@ function selectTab(id) {
       panel.hidden = true;
     }
   }
-  if (history.replaceState) {
-    const hash = id === "experience" ? "" : `#${id}`;
-    history.replaceState(null, "", `${window.location.pathname}${hash}`);
-  }
 }
 
-function tabFromHash() {
-  const h = (window.location.hash || "").slice(1).toLowerCase();
-  if (h === "about") return "about";
-  return "experience";
+function selectTab(id) {
+  applyTab(id);
+  if (history.replaceState) {
+    history.replaceState(null, "", id === "about" ? "/about" : "/");
+  }
 }
 
 tabs.forEach(({ tab, id }) => {
@@ -58,8 +67,8 @@ tabAbout?.addEventListener("keydown", (e) => {
   }
 });
 
-window.addEventListener("hashchange", () => {
-  selectTab(tabFromHash());
+window.addEventListener("popstate", () => {
+  applyTab(tabFromLocation());
 });
 
-selectTab(tabFromHash());
+applyTab(tabFromLocation());
