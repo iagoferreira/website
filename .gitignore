@@ -12,3 +12,8 @@ Thumbs.db
 *.local
 .env
 .env.*
+
+# Node / Astro
+node_modules
+dist
+.astro

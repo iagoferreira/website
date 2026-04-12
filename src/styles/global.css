@@ -70,7 +70,7 @@ body {
   gap: 0.5rem 1rem;
 }
 
-.tablist [role="tab"] {
+.tablist a {
   font: inherit;
   color: var(--muted);
   background: none;
@@ -81,11 +81,11 @@ body {
   border-bottom: 1px solid transparent;
 }
 
-.tablist [role="tab"]:hover {
+.tablist a:hover {
   color: var(--fg);
 }
 
-.tablist [role="tab"][aria-selected="true"] {
+.tablist a[aria-current="page"] {
   color: var(--fg);
   border-bottom-color: var(--fg);
 }
@@ -171,10 +171,6 @@ main {
 
 .about-text p:last-child {
   margin-bottom: 0;
-}
-
-[hidden] {
-  display: none !important;
 }
 
 :focus-visible {
